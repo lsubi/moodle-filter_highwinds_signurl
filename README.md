@@ -10,7 +10,7 @@ for more details
 Installation
 ------------
 
-Simply place the filter files in ./filter/hihgwinds_signurl 
+Simply place the filter files in ./filter/highwinds_signurl 
 
 Setup
 -----
