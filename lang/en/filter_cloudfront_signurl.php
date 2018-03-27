@@ -15,23 +15,26 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Strings for component 'filter_cloudfront_signurl', language 'en'
+ * Strings for component 'filter_highwinds_signurl', language 'en'
  *
  * @package    filter
- * @subpackage cloudfront_signurl
- * @copyright  2014 Owen Barritt, Wine & Spirit Education Trust
+ * @subpackage highwinds_signurl
+ * @copyright  2018 Louis Subirana, Dialogic Corporation
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
  
-$string['distributionurl'] = 'Distribution base URLs';
-$string['distributionurldesc'] = 'The cloudfront URLs of the distributions e.g. d111111abcdef8.cloudfront.net';
-$string['errornokeyid'] = 'Missing Key Pair ID';
-$string['errornoprivatekey'] = 'Missing Key Private SSH Key File'; 
-$string['errornourl'] = 'No distribution URL provided';
-$string['filtername'] = 'Cloudfront URL Signer';
-$string['keyid'] = 'Key Pair ID';
-$string['keyiddesc'] = 'The ID of the AWS Key Pair to use for signing';
-$string['privatekey'] = 'SSH Private Key';
-$string['privatekeydesc'] = 'SSH Private Key file to use for signing';
-$string['validduration'] = 'Validity Duration';
+$string['distributionurl'] = 'CNAME Target';
+$string['distributionurldesc'] = 'The Highwinds CNAME for the site target e.g. cds.e3y3m6d8.hwcdn.net';
+$string['errornopassphrase'] = 'Missing Passphrase';
+$string['errornourl'] = 'No CNAME target URL provided';
+$string['filtername'] = 'Highwinds URL Signer';
+$string['passphrase'] = 'Passphrase';
+$string['passphrasedesc'] = 'This is the shared secret used during the signing process. It should only be known by StackPath and systems authorized to sign your content.';
+$string['passphrasename'] = 'Passphrase Name';
+$string['passphrasenamedesc'] = 'This is the name of the portion of the URL that contains the Passphrase. It is only used during the generation and validation of a URL, and should not be present in the published URL.';
+$string['urlsignaturename'] = 'URL Signature Name';
+$string['urlsignaturenamedesc'] = 'This is the name of the portion of the URL that is used to identify the signature for the URL.';
+$string['expirationname'] = 'Expiration Name';
+$string['expirationnamedesc'] = 'This is the name of the query string parameter that contains the epoch time after which the URL is considered invalid.';
+$string['validduration'] = 'Expiration Duration';
 $string['validdurationdesc'] = 'How long should the signed URL be valid for';

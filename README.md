@@ -1,23 +1,21 @@
-moodle-filter_cloudfront_signurl
+moodle-filter_highwinds_signurl
 ================================
 
-This Moodle filter recognises cloudfront URLs from the URL defined in the 
+This Moodle filter recognises highwinds URLs from the URL defined in the 
 filter settings and replaces them with signed URLs.
 
-See http://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-signed-urls.html
-for full details
+See https://support.highwinds.com/customer/en/portal/articles/2861034-content-access-authentication?b_id=15425
+for more details
 
 Installation
 ------------
 
-Simply place the filter files in ./filter/cloudfront_signurl 
+Simply place the filter files in ./filter/hihgwinds_signurl 
 
 Setup
 -----
 
-In the filter settings you will need to define the URL for the cloudfront distribution
-along with the Key Pair ID and private key file to use for the signing process.
+In the filter settings you will need to define the URL for the highwinds CNAME target
+along with the Passphrase and Passphrase Name to use for the signing process.
 
-See http://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-trusted-signers.html
-
-At present only canned policies are supported.
+See https://support.highwinds.com/customer/en/portal/articles/2861034-content-access-authentication?b_id=15425

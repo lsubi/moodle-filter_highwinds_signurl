@@ -15,14 +15,14 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- *  Cloudfront URL signing filter
+ *  Highwinds URL signing filter
  *
- *  This filter will replace defined cloudfront URLs with signed
- *  URLs as described at http://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-signed-urls.html
+ *  This filter will replace defined highwinds URLs with signed
+ *  URLs as described at https://support.highwinds.com/customer/en/portal/articles/2861034-content-access-authentication?b_id=15425
  *
  * @package    filter
- * @subpackage cloudfront_signurl
- * @copyright  2014 Owen Barritt, Wine & Spirit Education Trust
+ * @subpackage highwinds_signurl
+ * @copyright  2018 Louis Subirana, Dialogic Corporation
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
  
@@ -30,6 +30,6 @@
 
 $plugin->version   = 2015071600;        // The current plugin version (Date: YYYYMMDDXX).
 $plugin->requires  = 2014051200;        // Requires Moodle 2.7
-$plugin->component = 'filter_cloudfront_signurl'; // Full name of the plugin (used for diagnostics).
+$plugin->component = 'filter_highwinds_signurl'; // Full name of the plugin (used for diagnostics).
 $plugin->maturity = MATURITY_STABLE;
 $plugin->release   = '0.1 for Moodle 2.7+';

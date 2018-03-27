@@ -15,21 +15,21 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- *  Cloudfront URL signing filter
+ *  highwinds URL signing filter
  *
- *  This filter will replace defined cloudfront URLs with signed
- *  URLs as described at http://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-signed-urls.html
+ *  This filter will replace defined highwinds URLs with signed
+ *  URLs as described at http://docs.aws.amazon.com/Amazonhighwinds/latest/DeveloperGuide/private-content-signed-urls.html
  *
  * @package    filter
- * @subpackage cloudfront_signurl
+ * @subpackage highwinds_signurl
  * @copyright  2014 Owen Barritt, Wine & Spirit Education Trust
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
-require_once($CFG->dirroot.'/filter/cloudfront_signurl/lib.php');
+require_once($CFG->dirroot.'/filter/highwinds_signurl/lib.php');
 
- class filter_cloudfront_signurl extends moodle_text_filter {
+ class filter_highwinds_signurl extends moodle_text_filter {
     /**
      * Implement the filtering.
      *
@@ -43,7 +43,7 @@ require_once($CFG->dirroot.'/filter/cloudfront_signurl/lib.php');
             return $text;
         }
         
-        if (! $disturls = get_config('filter_cloudfront_signurl','distributionurl') ){
+        if (! $disturls = get_config('filter_highwinds_signurl','distributionurl') ){
             //  Stop if no url set to look for
             return $text;
         }
@@ -79,6 +79,6 @@ require_once($CFG->dirroot.'/filter/cloudfront_signurl/lib.php');
     }
     
     private function callback(array $matches) {
-        return filter_cloudfront_signurl_urlsigner::get_canned_policy_stream_name($matches[0]);
+        return filter_highwinds_signurl_urlsigner::get_md5_signed_url($matches[0]);
    }
 }
