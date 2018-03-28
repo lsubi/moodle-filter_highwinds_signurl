@@ -67,8 +67,7 @@ require_once($CFG->dirroot.'/filter/highwinds_signurl/lib.php');
         $urlregex = implode("|",$regexurls);
 
         //$newtext = preg_replace_callback($re = '~(https?://'.$disturl.'/^( |#|"|\')*~is',
-        $newtext = preg_replace_callback($re = '~https?://('.$urlregex.')/[^ #"]*~is',
-            array($this, 'callback'), $text);
+        $newtext = preg_replace_callback($re = '~https?://'.$urlregex.'(/[^ #"]*)~is', array($this, 'callback'), $text);
         
         if (empty($newtext) or $newtext === $text) {
             // Error or not filtered.
@@ -79,6 +78,6 @@ require_once($CFG->dirroot.'/filter/highwinds_signurl/lib.php');
     }
     
     private function callback(array $matches) {
-        return filter_highwinds_signurl_urlsigner::get_md5_signed_url($matches[0]);
+        return filter_highwinds_signurl_urlsigner::get_md5_signed_url($matches[0], $matches[1]);
    }
 }

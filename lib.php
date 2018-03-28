@@ -36,34 +36,28 @@
             $encoded);
     }
 
-    private static function create_stream_name($url, $passphrase, $passphrasename, $expires, $expiresName) {
-        $result = $url;
-        // if the stream already contains query parameters, attach the new query parameters to the end
-        // otherwise, add the query parameters
-        $separator = strpos($url, '?') == FALSE ? '?' : '&';
-        // the presence of an expires time means we need to add TTL
-        if($expires) {
-            $result .= $separator . $expiresName . "=" . $expires . "&" . $passphrasename . "=" . $passphrase ;
-        } 
-        // not using a canned policy, include the policy itself in the stream name
-        else {
-            $result .= $separator . $passphrasename . "=" . $passphrase ;
-        }
-
-        // new lines would break us, so remove them
-        return str_replace('\n', '', $result);
-    }
-
-    public static function get_md5_signed_url($video_path) {
+    public static function get_md5_signed_url($fullpath, $video_path) {
         $expires = time() + get_config('filter_highwinds_signurl','validduration');
         $expiresName = get_config('filter_highwinds_signurl','expirationname');
         $passphrase = get_config('filter_highwinds_signurl','passphrase');
         $passphrasename = get_config('filter_highwinds_signurl','passphrasename');
         $urlsignaturename = get_config('filter_highwinds_signurl','urlsignaturename');
-        // combine the above into a stream name
-        $stream_name = self::create_stream_name($video_path, $passphrase, $passphrasename, $expires, $expiresName);
-        // url-encode the query string characters to work around a flash player bug
-        return $video_path . "?" . $expiresName . "=" . $expires . "&" . $urlsignaturename . "=" . md5($stream_name);
+
+        $to_md5 = $video_path;
+        
+        // if the video link already contains query parameters, attach the new query parameters to the end
+        // otherwise, add the query parameters
+        $separator = strpos($to_md5, '?') == FALSE ? '?' : '&';
+        
+        // requires an expires. Add exception here if you don't want require TTL
+        $to_md5 .= $separator . $expiresName . "=" . $expires . "&" . $passphrasename . "=" . $passphrase ;
+        
+        // add_to_log($video_path, 'signurl', 'signurl created', 'to encode: '.$to_md5, '');
+        
+        // return new video_path with TTL and md5 encoded in URL Signature Name parameter from Highwinds config
+        $result = $fullpath . "?" . $expiresName . "=" . $expires . "&" . $urlsignaturename . "=" . md5($to_md5);
+        return $result;
+        
     }
 
     
